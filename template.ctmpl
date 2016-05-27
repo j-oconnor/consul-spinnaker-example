@@ -1,0 +1,10 @@
+
+{{$helloActiveVersion:=key "apps/hello/activeVersion"}}# ActiveVersion: {{$helloActiveVersion}}
+{{$helloUrlMap:=key "apps/hello/urlMap"}}# UrlMap:  {{$helloUrlMap}}
+upstream {{$helloActiveVersion}} { {{range service $helloActiveVersion}}
+  server {{.Address}}:{{.Port}};  #{{end}}
+}
+
+location ^~ {{$helloUrlMap}} {
+ proxy_pass http://{{$helloActiveVersion}};
+}

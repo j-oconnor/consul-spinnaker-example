@@ -1,0 +1,4 @@
+{{$helloActiveVersion:=key "apps/hello/activeVersion"}}
+{{$helloUrlMap:=key "apps/hello/urlMap"}}
+{{range $b,$c:=service $helloActiveVersion}}{{$c}}
+{{end}}
